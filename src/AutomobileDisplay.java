@@ -57,12 +57,12 @@ public abstract class AutomobileDisplay extends Observable {
 	/**
 	 * Indicate that the light is on
 	 */
-	public abstract void turnLightOn();
+	public abstract void gearInDrive();
 
 	/**
 	 * Indicate that the light is off
 	 */
-	public abstract void turnLightOff();
+	public abstract void gearInPark();
 
 	/**
 	 * Indicate that the door is now closed
@@ -77,7 +77,7 @@ public abstract class AutomobileDisplay extends Observable {
 	/**
 	 * indicate that cooking has begun
 	 */
-	public abstract void startCooking();
+	public abstract void startDriving();
 
 	/**
 	 * indicate that cooking has ended

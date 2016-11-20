@@ -24,7 +24,7 @@
  *
  */
 public class AutomobileContext {
-	private static AutomobileDisplay microwaveDisplay;
+	private static AutomobileDisplay automobileDisplay;
 	private AutomobileState currentState;
 	private static AutomobileContext instance;
 
@@ -33,8 +33,8 @@ public class AutomobileContext {
 	 */
 	private AutomobileContext() {
 		instance = this;
-		microwaveDisplay = AutomobileDisplay.instance();
-		currentState = PowerOnState.instance();
+		automobileDisplay = AutomobileDisplay.instance();
+		currentState = PowerOffState.instance();
 	}
 
 	/**
@@ -75,6 +75,6 @@ public class AutomobileContext {
 	 * @return the display
 	 */
 	public AutomobileDisplay getDisplay() {
-		return microwaveDisplay;
+		return automobileDisplay;
 	}
 }

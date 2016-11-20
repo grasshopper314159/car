@@ -74,7 +74,7 @@ public class PowerOnState extends AutomobileState implements DriveRequestListene
 		DriveRequestManager.instance().addDriveRequestListener(instance);
 		PowerOffManager.instance().addPowerOffListener(instance);
 		display.powerOn();
-		display.turnLightOff();
+		display.gearInPark();
 		display.stopped();
 		display.displayTimeRemaining(0);
 		Timer.instance().setTimeValue(0);

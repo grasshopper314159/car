@@ -29,6 +29,7 @@ public class PowerOffState extends AutomobileState implements PowerOnListener {
 		instance = this;
 	}
 
+	@Override
 	public void leave() {
 		PowerOnManager.instance().removePowerOnListener(this);
 	}
@@ -57,9 +58,10 @@ public class PowerOffState extends AutomobileState implements PowerOnListener {
 	/**
 	 * Initialize the state
 	 */
+	@Override
 	public void run() {
 		PowerOnManager.instance().addPowerOnListener(this);
-		display.turnLightOn();
+		display.gearInDrive();
 		display.stopped();
 		display.powerOff();
 		display.displayTimeRemaining(0);

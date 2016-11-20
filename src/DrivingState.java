@@ -95,9 +95,9 @@ public class DrivingState extends AutomobileState
 		DriveRequestManager.instance().addDriveRequestListener(this);
 		TimerRanOutManager.instance().addTimerRanOutListener(this);
 		TimerTickedManager.instance().addTimerTickedListener(this);
-		display.turnLightOn();
+		display.gearInDrive();
 		Timer.instance().setTimeValue(10);
-		display.startCooking();
+		display.startDriving();
 		display.displayTimeRemaining(Timer.instance().getTimeValue());
 	}
 }

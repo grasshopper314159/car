@@ -93,16 +93,16 @@ public class GUIDisplay extends AutomobileDisplay implements ActionListener {
 	 * Indicate that the light is on
 	 */
 	@Override
-	public void turnLightOn() {
-		frame.gearStatus.setText("Light On");
+	public void gearInDrive() {
+		frame.gearStatus.setText("Drive");
 	}
 
 	/**
 	 * Indicate that the light is off
 	 */
 	@Override
-	public void turnLightOff() {
-		frame.gearStatus.setText("Light Off");
+	public void gearInPark() {
+		frame.gearStatus.setText("Park");
 	}
 
 	/**
@@ -136,7 +136,7 @@ public class GUIDisplay extends AutomobileDisplay implements ActionListener {
 	 * Indicate that it is cooking
 	 */
 	@Override
-	public void startCooking() {
+	public void startDriving() {
 		frame.drivingStatus.setText("Cooking");
 	}
 
