@@ -54,7 +54,7 @@ public class AutomobileContext {
 	 * observable for clock
 	 */
 	public void initialize() {
-		instance.changeCurrentState(PowerOnState.instance());
+		instance.changeCurrentState(PowerOffState.instance());
 	}
 
 	/**
