@@ -21,6 +21,8 @@
  * Represents the door close button
  *
  */
+package src;
+
 public class AcceleratorButton extends GUIButton {
 	/**
 	 * Crates the button with the required label

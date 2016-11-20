@@ -21,6 +21,9 @@
  * The button that represents door open
  *
  */
+
+package src;
+
 public class BrakeButton extends GUIButton {
 	/**
 	 * Create the button with the proper display

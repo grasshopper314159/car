@@ -1,6 +1,7 @@
 /**
  * 
  * @author Brahma Dathan and Sarnath Ramnath
+
  * @Copyright (c) 2010
  
  * Redistribution and use with or without
@@ -23,6 +24,9 @@
  * states
  *
  */
+
+package src;
+
 public class AutomobileContext {
 	private static AutomobileDisplay automobileDisplay;
 	private AutomobileState currentState;

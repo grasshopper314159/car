@@ -1,3 +1,5 @@
+
+package src;
 public class ParkButton extends GUIButton {
 	/**
 	 * Create the button with the proper display

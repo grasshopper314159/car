@@ -22,6 +22,8 @@
  * 
  *
  */
+
+package src;
 public abstract class AutomobileState {
 	protected static AutomobileContext context;
 	protected static AutomobileDisplay display;

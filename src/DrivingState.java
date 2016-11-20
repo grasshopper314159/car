@@ -22,6 +22,8 @@
  * Represents the cooking state.
  *
  */
+
+package src;
 public class DrivingState extends AutomobileState
 		implements DriveRequestListener, TimerRanOutListener, TimerTickedListener, PowerOffListener {
 	private static DrivingState instance;

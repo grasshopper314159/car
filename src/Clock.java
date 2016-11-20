@@ -18,12 +18,16 @@
  * The authors do not make any claims regarding the correctness of the code in this module
  * and are not responsible for any loss or damage resulting from its use.  
  */
+
+package src;
 import java.util.Observable;
 
 /**
  * Implements a clock as a Runnable. Extends Observable to ease communication
  *
  */
+
+
 public class Clock extends Observable implements Runnable {
 	private Thread thread = new Thread(this);
 	private static Clock instance;

@@ -22,6 +22,8 @@
  * Represents the door opened state
  *
  */
+
+package src;
 public class PowerOffState extends AutomobileState implements PowerOnListener {
 	private static PowerOffState instance;
 
