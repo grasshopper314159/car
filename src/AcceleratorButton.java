@@ -38,6 +38,7 @@ public class AcceleratorButton extends GUIButton {
 	 * Tell the manager to send it to the right listeners
 	 */
 	public void inform(AutomobileDisplay source) {
-		PowerOnManager.instance().processEvent(new PowerOnEvent(source));
+		// AcceleratorManager.instance().processEvent(new PowerOnEvent(source));
+
 	}
 }
