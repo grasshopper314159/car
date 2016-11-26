@@ -22,7 +22,7 @@ package src;
 import java.util.EventObject;
 
 public class AccelerateEvent extends EventObject {
-	public Accelerate(Object source) {
+	public AccelerateEvent(Object source) {
 		super(source);
 	}
 }
