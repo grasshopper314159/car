@@ -54,17 +54,20 @@ public class Timer implements Observer {
 	public void update(Observable clock, Object value) {
 		if (value.toString().equals("CLOCK_ACCELERATE_EVENT")) {
 			TimerTickedManager.instance().processEvent(new TimerTickedEvent(instance));
-			addTimeValue(5);
+
+			if (!(getTimeValue() >= 50)) {
+				addTimeValue(5);
+			}
+
 		}
 		if (value.toString().equals("CLOCK_DECELERATE_EVENT")) {
 			TimerTickedManager.instance().processEvent(new TimerTickedEvent(instance));
 			timeValue -= 5;
-			
-			if(getTimeValue() == 0){
-				// can switch to park
+
+			if (getTimeValue() == 0) {
+				// notify that the system can switch to park
 			}
-			
-			}
+
 		}
 
 		// if (--timeValue == 0) {
