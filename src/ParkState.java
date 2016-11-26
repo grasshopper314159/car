@@ -24,7 +24,7 @@ package src;
  * Represents the door opened state
  *
  */
-public class ParkState extends AutomobileState implements PowerOnListener {
+public class ParkState extends AutomobileState implements AccelerateListener, PowerOffListener {
 	private static ParkState instance;
 
 	private ParkState() {
@@ -33,7 +33,7 @@ public class ParkState extends AutomobileState implements PowerOnListener {
 
 	@Override
 	public void leave() {
-		PowerOnManager.instance().removePowerOnListener(this);
+		// AcceleratorManager.instance().removeAccelerateListener(instance);
 	}
 
 	/**
@@ -52,8 +52,8 @@ public class ParkState extends AutomobileState implements PowerOnListener {
 	 * Process door closed event
 	 */
 	@Override
-	public void powerOff(PowerOnEvent event) {
-		context.changeCurrentState(PowerOnState.instance());
+	public void powerOff(PowerOffEvent event) {
+		context.changeCurrentState(PowerOffState.instance());
 
 	}
 
@@ -62,11 +62,17 @@ public class ParkState extends AutomobileState implements PowerOnListener {
 	 */
 	@Override
 	public void run() {
-		ParkManager.instance().addPowerOffListener(this);
+		PowerOffManager.instance().addPowerOffListener(instance);
 		display.gearInPark();
 		display.stopped();
 		display.powerOff();
 		display.displayTimeRemaining(0);
+	}
+
+	@Override
+	public void Accelerate(AccelerateEvent event) {
+		// TODO Auto-generated method stub
+
 	}
 
 }
