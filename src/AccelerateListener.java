@@ -22,5 +22,5 @@ package src;
 import java.util.EventListener;
 
 public interface AccelerateListener extends EventListener {
-	public void Accelerate(AccelerateEvent event);
+	public void accelerate(AccelerateEvent event);
 }
