@@ -41,14 +41,14 @@ public class AcceleratorManager {
 		listenerList.add(AccelerateListener.class, listener);
 	}
 
-	public void removeAccelerateListener(AccelerateListener listener) {
+	public void removeAccelerate(AccelerateListener listener) {
 		listenerList.remove(AccelerateListener.class, listener);
 	}
 
 	public void processEvent(AccelerateEvent event) {
 		EventListener[] listeners = listenerList.getListeners(AccelerateListener.class);
 		for (int index = 0; index < listeners.length; index++) {
-			((AccelerateListener) listeners[index]).brakeOff(event);
+			((AccelerateListener) listeners[index]).Accelerate(event);
 		}
 	}
 }
