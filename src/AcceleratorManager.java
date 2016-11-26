@@ -25,20 +25,20 @@ import javax.swing.event.EventListenerList;
 
 public class AcceleratorManager {
 	private EventListenerList listenerList = new EventListenerList();
-	private static PowerOnManager instance;
+	private static AcceleratorManager instance;
 
-	private PowerOnManager() {
+	private AcceleratorManager() {
 	}
 
-	public static PowerOnManager instance() {
+	public static AcceleratorManager instance() {
 		if (instance == null) {
-			instance = new PowerOnManager();
+			instance = new AcceleratorManager();
 		}
 		return instance;
 	}
 
-	public void addPowerOnListener(PowerOnListener listener) {
-		listenerList.add(PowerOnListener.class, listener);
+	public void addAccelerateListener(AccelerateListener listener) {
+		listenerList.add(AccelerateListener.class, listener);
 	}
 
 	public void removePowerOnListener(PowerOnListener listener) {
