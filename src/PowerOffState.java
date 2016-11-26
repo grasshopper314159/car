@@ -1,3 +1,5 @@
+package src;
+
 /**
  * 
  * @author Brahma Dathan and Sarnath Ramnath
@@ -61,7 +63,7 @@ public class PowerOffState extends AutomobileState implements PowerOnListener {
 	@Override
 	public void run() {
 		PowerOnManager.instance().addPowerOnListener(this);
-		display.gearInDrive();
+		display.gearInPark();
 		display.stopped();
 		display.powerOff();
 		display.displayTimeRemaining(0);

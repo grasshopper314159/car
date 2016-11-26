@@ -1,3 +1,5 @@
+package src;
+
 /**
  * 
  * @author Brahma Dathan and Sarnath Ramnath
@@ -39,5 +41,6 @@ public class OffButton extends GUIButton {
 	@Override
 	public void inform(AutomobileDisplay source) {
 		// DoorOpenManager.instance().processEvent(new DoorOpenEvent(source));
+		PowerOffManager.instance().processEvent(new PowerOffEvent(source));
 	}
 }

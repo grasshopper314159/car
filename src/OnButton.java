@@ -1,3 +1,5 @@
+package src;
+
 /**
  * 
  * @author Brahma Dathan and Sarnath Ramnath
@@ -38,6 +40,6 @@ public class OnButton extends GUIButton {
 	 */
 	@Override
 	public void inform(AutomobileDisplay source) {
-		// DoorOpenManager.instance().processEvent(new DoorOpenEvent(source));
+		PowerOnManager.instance().processEvent(new PowerOnEvent(source));
 	}
 }

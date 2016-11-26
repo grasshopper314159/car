@@ -1,3 +1,5 @@
+package src;
+
 public class ParkButton extends GUIButton {
 	/**
 	 * Create the button with the proper display
@@ -15,6 +17,7 @@ public class ParkButton extends GUIButton {
 	 */
 	@Override
 	public void inform(AutomobileDisplay source) {
-		// DoorOpenManager.instance().processEvent(new DoorOpenEvent(source));
+		PowerOnManager.instance().processEvent(new PowerOnEvent(source));
+		// brings back onto "power on, park" state
 	}
 }

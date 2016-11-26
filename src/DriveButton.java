@@ -1,3 +1,5 @@
+package src;
+
 public class DriveButton extends GUIButton {
 	/**
 	 * Create the button with the proper display
@@ -16,5 +18,6 @@ public class DriveButton extends GUIButton {
 	@Override
 	public void inform(AutomobileDisplay source) {
 		// DoorOpenManager.instance().processEvent(new DoorOpenEvent(source));
+		DriveRequestManager.instance().processEvent(new DriveRequestEvent(source));
 	}
 }
