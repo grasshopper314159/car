@@ -41,7 +41,7 @@ public class ParkManager {
 		listenerList.add(ParkListener.class, listener);
 	}
 
-	public void removePowerOffListener(ParkListener listener) {
+	public void removeParkListener(ParkListener listener) {
 		listenerList.remove(ParkListener.class, listener);
 	}
 
