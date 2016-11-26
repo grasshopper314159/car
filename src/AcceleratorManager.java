@@ -41,14 +41,14 @@ public class AcceleratorManager {
 		listenerList.add(AccelerateListener.class, listener);
 	}
 
-	public void removePowerOnListener(PowerOnListener listener) {
-		listenerList.remove(PowerOnListener.class, listener);
+	public void removeAccelerateListener(AccelerateListener listener) {
+		listenerList.remove(AccelerateListener.class, listener);
 	}
 
-	public void processEvent(PowerOnEvent event) {
-		EventListener[] listeners = listenerList.getListeners(PowerOnListener.class);
+	public void processEvent(AccelerateEvent event) {
+		EventListener[] listeners = listenerList.getListeners(AccelerateListener.class);
 		for (int index = 0; index < listeners.length; index++) {
-			((PowerOnListener) listeners[index]).powerOff(event);
+			((AccelerateListener) listeners[index]).brakeOff(event);
 		}
 	}
 }
