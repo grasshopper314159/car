@@ -30,7 +30,8 @@ public class Clock extends Observable implements Runnable {
 	private static Clock instance;
 
 	public enum Events {
-		CLOCK_TICKED_EVENT
+		// CLOCK_TICKED_EVENT,
+		CLOCK_ACCELERATE_EVENT, CLOCK_DECELERATE_EVENT
 	};
 
 	/**
@@ -61,7 +62,7 @@ public class Clock extends Observable implements Runnable {
 			while (true) {
 				Thread.sleep(1000);
 				setChanged();
-				notifyObservers(Events.CLOCK_TICKED_EVENT);
+				notifyObservers(Events.CLOCK_ACCELERATE_EVENT);
 			}
 		} catch (InterruptedException ie) {
 		}

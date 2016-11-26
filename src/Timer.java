@@ -52,11 +52,28 @@ public class Timer implements Observer {
 
 	@Override
 	public void update(Observable clock, Object value) {
-		if (--timeValue == 0) {
-			TimerRanOutManager.instance().processEvent(new TimerRanOutEvent(instance));
-		} else {
+		if (value.toString().equals("CLOCK_ACCELERATE_EVENT")) {
 			TimerTickedManager.instance().processEvent(new TimerTickedEvent(instance));
+			addTimeValue(5);
 		}
+		if (value.toString().equals("CLOCK_DECELERATE_EVENT")) {
+			TimerTickedManager.instance().processEvent(new TimerTickedEvent(instance));
+			timeValue -= 5;
+			
+			if(getTimeValue() == 0){
+				// can switch to park
+			}
+			
+			}
+		}
+
+		// if (--timeValue == 0) {
+		// TimerRanOutManager.instance().processEvent(new
+		// TimerRanOutEvent(instance));
+		// } else {
+		// TimerTickedManager.instance().processEvent(new
+		// TimerTickedEvent(instance));
+		// }
 
 	}
 }
