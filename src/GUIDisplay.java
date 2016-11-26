@@ -73,12 +73,11 @@ public class GUIDisplay extends AutomobileDisplay implements ActionListener {
 			getContentPane().add(brakePresser);
 			getContentPane().add(driveButton);
 			getContentPane().add(parkButton);
-			// acceleratorPresser.addActionListener(GUIDisplay.this);
-			// brakePresser.addActionListener(GUIDisplay.this);
 			onButton.addActionListener(GUIDisplay.this);
 			offButton.addActionListener(GUIDisplay.this);
 			driveButton.addActionListener(GUIDisplay.this);
-
+			// acceleratorPresser.addActionListener(GUIDisplay.this);
+			// brakePresser.addActionListener(GUIDisplay.this);
 			pack();
 			setVisible(true);
 		}
