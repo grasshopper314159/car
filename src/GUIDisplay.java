@@ -139,7 +139,7 @@ public class GUIDisplay extends AutomobileDisplay implements ActionListener {
 	 */
 	@Override
 	public void startDriving() {
-		frame.drivingStatus.setText("Cooking");
+		frame.drivingStatus.setText("Drive");
 	}
 
 	/**

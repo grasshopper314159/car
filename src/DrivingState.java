@@ -39,6 +39,7 @@ public class DrivingState extends AutomobileState
 	 * Removes as a listener from all managers
 	 * 
 	 */
+	@Override
 	public void leave() {
 		DriveRequestManager.instance().removeDriveRequestListener(this);
 		TimerRanOutManager.instance().removeTimerRanOutListener(this);
@@ -60,6 +61,7 @@ public class DrivingState extends AutomobileState
 	/**
 	 * Process Cook request
 	 */
+	@Override
 	public void driveRequested(DriveRequestEvent event) {
 		Timer.instance().addTimeValue(10);
 		display.displayTimeRemaining(Timer.instance().getTimeValue());
@@ -68,6 +70,7 @@ public class DrivingState extends AutomobileState
 	/**
 	 * Process door open request
 	 */
+	@Override
 	public void powerOff(PowerOffEvent event) {
 		context.changeCurrentState(PowerOffState.instance());
 	}
@@ -75,6 +78,7 @@ public class DrivingState extends AutomobileState
 	/**
 	 * Process clock tick Generates the timer runs out event
 	 */
+	@Override
 	public void timerTicked(TimerTickedEvent event) {
 		display.displayTimeRemaining(Timer.instance().getTimeValue());
 	}
@@ -82,6 +86,7 @@ public class DrivingState extends AutomobileState
 	/**
 	 * Process clock ticks Generates the timer runs out event
 	 */
+	@Override
 	public void timerRanOut(TimerRanOutEvent event) {
 		display.displayTimeRemaining(Timer.instance().getTimeValue());
 		context.changeCurrentState(PowerOnState.instance());
@@ -92,13 +97,14 @@ public class DrivingState extends AutomobileState
 	 * dosplays
 	 * 
 	 */
+	@Override
 	public void run() {
 		PowerOffManager.instance().addPowerOffListener(this);
-		DriveRequestManager.instance().addDriveRequestListener(this);
+		// DriveRequestManager.instance().addDriveRequestListener(this);
 		TimerRanOutManager.instance().addTimerRanOutListener(this);
 		TimerTickedManager.instance().addTimerTickedListener(this);
 		display.gearInDrive();
-		Timer.instance().setTimeValue(10);
+		// Timer.instance().setTimeValue(10);
 		display.startDriving();
 		display.displayTimeRemaining(Timer.instance().getTimeValue());
 	}
