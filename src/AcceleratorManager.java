@@ -48,7 +48,7 @@ public class AcceleratorManager {
 		}
 	}
 
-	public void removeAccelerateListener(AcceleratorListener listener) {
+	public void removeAccelerateListener(AccelerateListener listener) {
 		// TODO Auto-generated method stub
 		listenerList.remove(AccelerateListener.class, listener);
 	}
