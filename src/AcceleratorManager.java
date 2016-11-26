@@ -41,14 +41,15 @@ public class AcceleratorManager {
 		listenerList.add(AccelerateListener.class, listener);
 	}
 
-	public void removeAccelerate(AccelerateListener listener) {
-		listenerList.remove(AccelerateListener.class, listener);
-	}
-
 	public void processEvent(AccelerateEvent event) {
 		EventListener[] listeners = listenerList.getListeners(AccelerateListener.class);
 		for (int index = 0; index < listeners.length; index++) {
 			((AccelerateListener) listeners[index]).Accelerate(event);
 		}
+	}
+
+	public void removeAccelerateListener(AcceleratorState listener) {
+		// TODO Auto-generated method stub
+		listenerList.remove(AccelerateListener.class, listener);
 	}
 }
