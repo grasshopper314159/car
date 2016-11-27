@@ -33,9 +33,9 @@ public class PowerOnState extends AutomobileState implements DriveRequestListene
 
 	@Override
 	public void leave() {
-		DriveRequestManager.instance().removeDriveRequestListener(instance);
-		PowerOffManager.instance().removePowerOffListener(instance);
-		PowerOnManager.instance().removePowerOnListener(instance);
+		DriveRequestManager.instance().removeDriveRequestListener(this);
+		PowerOffManager.instance().removePowerOffListener(this);
+		PowerOnManager.instance().removePowerOnListener(this);
 	}
 
 	/**

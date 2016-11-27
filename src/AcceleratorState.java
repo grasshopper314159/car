@@ -37,7 +37,7 @@ public class AcceleratorState extends AutomobileState
 		AcceleratorManager.instance().removeAccelerateListener(this);
 		TimerRanOutManager.instance().removeTimerRanOutListener(this);
 		TimerTickedManager.instance().removeTimerTickedListener(this);
-		PowerOnManager.instance().removePowerOnListener(instance);
+		PowerOnManager.instance().removePowerOnListener(this);
 	}
 
 	/**
@@ -57,6 +57,7 @@ public class AcceleratorState extends AutomobileState
 	 */
 	@Override
 	public void accelerate(AccelerateEvent event) {
+
 		context.changeCurrentState(AcceleratorState.instance());
 
 		display.displayTimeRemaining(Timer.instance().getTimeValue());
