@@ -48,7 +48,7 @@ public class ParkManager {
 	public void processEvent(ParkEvent event) {
 		EventListener[] listeners = listenerList.getListeners(ParkListener.class);
 		for (int index = 0; index < listeners.length; index++) {
-			((ParkListener) listeners[index]).powerOff(event);
+			((ParkListener) listeners[index]).park(event);
 		}
 	}
 }
