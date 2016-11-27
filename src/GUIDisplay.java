@@ -141,10 +141,6 @@ public class GUIDisplay extends AutomobileDisplay implements ActionListener {
 	/**
 	 * Indicate that it is cooking
 	 */
-	@Override
-	public void startDriving() {
-		frame.drivingStatus.setText("Drive");
-	}
 
 	/**
 	 * Indicate that cooking is done

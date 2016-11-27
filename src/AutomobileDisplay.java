@@ -78,7 +78,7 @@ public abstract class AutomobileDisplay extends Observable {
 	/**
 	 * indicate that cooking has begun
 	 */
-	public abstract void startDriving();
+	// public abstract void startDriving();
 
 	/**
 	 * indicate that cooking has ended

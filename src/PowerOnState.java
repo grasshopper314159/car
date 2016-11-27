@@ -31,6 +31,7 @@ public class PowerOnState extends AutomobileState implements DriveRequestListene
 		instance = this;
 	}
 
+	@Override
 	public void leave() {
 		DriveRequestManager.instance().removeDriveRequestListener(instance);
 		PowerOffManager.instance().removePowerOffListener(instance);
@@ -72,12 +73,13 @@ public class PowerOnState extends AutomobileState implements DriveRequestListene
 	 * initialize the state
 	 * 
 	 */
+	@Override
 	public void run() {
 		DriveRequestManager.instance().addDriveRequestListener(instance);
 		PowerOffManager.instance().addPowerOffListener(instance);
 		display.powerOn();
-		display.gearInPark();
-		display.stopped();
+		// display.gearInPark();
+		// display.stopped();
 		display.displayTimeRemaining(0);
 		Timer.instance().setTimeValue(0);
 	}
