@@ -1,3 +1,4 @@
+package src;
 
 /**
  * 
@@ -43,5 +44,5 @@ public abstract class GUIButton extends JButton {
 	 * @param display
 	 *            the GUI
 	 */
-	public abstract void inform(MicrowaveDisplay display);
+	public abstract void inform(AutomobileDisplay display);
 }
