@@ -62,17 +62,18 @@ public class GUIDisplay extends AutomobileDisplay implements ActionListener {
 		 */
 		private SimpleDisplay() {
 			super("Automobile");
+
 			getContentPane().setLayout(new FlowLayout());
-			getContentPane().add(powerStatus);
-			getContentPane().add(gearStatus);
-			getContentPane().add(timerValue);
-			getContentPane().add(drivingStatus);
 			getContentPane().add(onButton);
 			getContentPane().add(offButton);
-			getContentPane().add(acceleratorPresser);
-			getContentPane().add(brakePresser);
+			getContentPane().add(powerStatus);
 			getContentPane().add(driveButton);
 			getContentPane().add(parkButton);
+			getContentPane().add(gearStatus);
+			getContentPane().add(acceleratorPresser);
+			getContentPane().add(brakePresser);
+			getContentPane().add(drivingStatus);
+			getContentPane().add(timerValue);
 			onButton.addActionListener(GUIDisplay.this);
 			offButton.addActionListener(GUIDisplay.this);
 			driveButton.addActionListener(GUIDisplay.this);

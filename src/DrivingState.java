@@ -117,6 +117,7 @@ public class DrivingState extends AutomobileState implements DriveRequestListene
 	public void run() {
 		// PowerOffManager.instance().addPowerOffListener(this);
 		// DriveRequestManager.instance().addDriveRequestListener(this);
+		Timer.instance().setTimeValue(0);
 		AcceleratorManager.instance().addAccelerateListener(this);
 		BrakeManager.instance().addBrakeListener(this);
 		ParkManager.instance().addParkListener(this);
