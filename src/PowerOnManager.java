@@ -48,7 +48,7 @@ public class PowerOnManager {
 	public void processEvent(PowerOnEvent event) {
 		EventListener[] listeners = listenerList.getListeners(PowerOnListener.class);
 		for (int index = 0; index < listeners.length; index++) {
-			((PowerOnListener) listeners[index]).powerOff(event);
+			((PowerOnListener) listeners[index]).powerOn(event);
 		}
 	}
 }

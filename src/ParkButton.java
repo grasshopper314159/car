@@ -17,7 +17,7 @@ public class ParkButton extends GUIButton {
 	 */
 	@Override
 	public void inform(AutomobileDisplay source) {
-		PowerOnManager.instance().processEvent(new PowerOnEvent(source));
+		ParkManager.instance().processEvent(new ParkEvent(source));
 		// brings back onto "power on, park" state
 	}
 }

@@ -22,5 +22,5 @@ package src;
 import java.util.EventListener;
 
 public interface PowerOnListener extends EventListener {
-	public void powerOff(PowerOnEvent event);
+	public void powerOn(PowerOnEvent event);
 }
