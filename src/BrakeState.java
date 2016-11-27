@@ -24,7 +24,8 @@ package src;
  * Represents the door opened state
  *
  */
-public class BrakeState extends AutomobileState implements AccelerateListener, ParkListener, BrakeListener {
+public class BrakeState extends AutomobileState
+		implements AccelerateListener, ParkListener, BrakeListener, TimerRanOutListener, TimerTickedListener {
 	private static BrakeState instance;
 
 	private BrakeState() {
@@ -33,12 +34,11 @@ public class BrakeState extends AutomobileState implements AccelerateListener, P
 
 	@Override
 	public void leave() {
-		AcceleratorManager.instance().removeAccelerateListener(instance);
 
-		// change parameter to AccelerateListener in ln 51 from
-		// acceleratormanager.java
-		// ParkManager.instance().removeParkListener(instance);
-		BrakeManager.instance().removeBrakeListener(instance);
+		AcceleratorManager.instance().removeAccelerateListener(this);
+		BrakeManager.instance().removeBrakeListener(this);
+		TimerRanOutManager.instance().removeTimerRanOutListener(this);
+		TimerTickedManager.instance().removeTimerTickedListener(this);
 	}
 
 	/**
@@ -68,6 +68,18 @@ public class BrakeState extends AutomobileState implements AccelerateListener, P
 		context.changeCurrentState(AcceleratorState.instance());
 	}
 
+	@Override
+	public void timerTicked(TimerTickedEvent event) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void timerRanOut(TimerRanOutEvent event) {
+		// TODO Auto-generated method stub
+
+	}
+
 	/**
 	 * handle park event
 	 * 
@@ -84,7 +96,8 @@ public class BrakeState extends AutomobileState implements AccelerateListener, P
 	public void run() {
 
 		AcceleratorManager.instance().addAccelerateListener(this);
-
+		// Timer.instance().setTimeValue(Timer.instance().getTimeValue() - 5);
+		// display.displayTimeRemaining(Timer.instance().getTimeValue());
 		display.brake();
 
 	}

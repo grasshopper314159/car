@@ -33,9 +33,9 @@ public class ParkState extends AutomobileState implements ParkListener, PowerOff
 
 	@Override
 	public void leave() {
-		ParkManager.instance().removeParkListener(instance);
-		DriveRequestManager.instance().removeDriveRequestListener(instance);
-		PowerOffManager.instance().removePowerOffListener(instance);
+		ParkManager.instance().removeParkListener(this);
+		DriveRequestManager.instance().removeDriveRequestListener(this);
+		PowerOffManager.instance().removePowerOffListener(this);
 	}
 
 	/**
@@ -80,9 +80,8 @@ public class ParkState extends AutomobileState implements ParkListener, PowerOff
 		PowerOffManager.instance().addPowerOffListener(instance);
 		DriveRequestManager.instance().addDriveRequestListener(instance);
 		display.gearInPark();
-		// display.stopped();
-		// display.powerOff();
-		// display.displayTimeRemaining(0);
+		display.stopped();
+
 	}
 
 }
