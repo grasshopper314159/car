@@ -34,10 +34,16 @@ public class BrakeState extends AutomobileState
 
 	@Override
 	public void leave() {
+<<<<<<< HEAD
 		// AcceleratorManager.instance().removeAccelerateListener(instance);
 		// AcceleratorManager.instance().removeAccelerateListener(instance);
 		// change parameter to AccelerateListener in ln 51 from
 		// acceleratormanager.java
+=======
+		AcceleratorManager.instance().removeAccelerateListener(instance);
+
+		ParkManager.instance().removeParkListener(instance);
+>>>>>>> refs/remotes/origin/Uzy
 		// ParkManager.instance().removeParkListener(instance);
 		BrakeManager.instance().removeBrakeListener(instance);
 		TimerRanOutManager.instance().removeTimerRanOutListener(this);
@@ -97,11 +103,15 @@ public class BrakeState extends AutomobileState
 	 */
 	@Override
 	public void run() {
+		BrakeManager.instance().addBrakeListener(this);
+		// display.turnLightOn();
+		// display.notCooking();
+		display.powerOn();
+		display.displayTimeRemaining(Timer.instance().getTimeValue());
 
 		AcceleratorManager.instance().addAccelerateListener(this);
 
 		display.brake();
-
 	}
 
 }
