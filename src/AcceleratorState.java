@@ -25,7 +25,7 @@ package src;
  *
  */
 public class AcceleratorState extends AutomobileState
-		implements AccelerateListener, BrakeListener, TimerRanOutListener, TimerTickedListener {
+		implements AccelerateListener, BrakeListener, TimerRanOutListener, TimerTickedListener, PowerOnListener {
 	private static AcceleratorState instance;
 
 	private AcceleratorState() {
@@ -37,6 +37,7 @@ public class AcceleratorState extends AutomobileState
 		AcceleratorManager.instance().removeAccelerateListener(this);
 		TimerRanOutManager.instance().removeTimerRanOutListener(this);
 		TimerTickedManager.instance().removeTimerTickedListener(this);
+		PowerOnManager.instance().removePowerOnListener(instance);
 	}
 
 	/**
@@ -80,6 +81,12 @@ public class AcceleratorState extends AutomobileState
 	@Override
 	public void timerRanOut(TimerRanOutEvent event) {
 		display.displayTimeRemaining(Timer.instance().getTimeValue());
+
+	}
+
+	@Override
+	public void powerOn(PowerOnEvent event) {
+		// TODO Auto-generated method stub
 
 	}
 
