@@ -24,8 +24,8 @@ package src;
  * Represents the cooking state.
  *
  */
-public class DrivingState extends AutomobileState
-		implements DriveRequestListener, BrakeListener, AccelerateListener, ParkListener {
+public class DrivingState extends AutomobileState implements DriveRequestListener, BrakeListener, AccelerateListener,
+		ParkListener, PowerOnListener, PowerOffListener {
 	private static DrivingState instance;
 
 	/**
@@ -42,9 +42,12 @@ public class DrivingState extends AutomobileState
 	@Override
 	public void leave() {
 		DriveRequestManager.instance().removeDriveRequestListener(this);
+		PowerOnManager.instance().removePowerOnListener(this);
+		PowerOffManager.instance().removePowerOffListener(this);
 		// TimerRanOutManager.instance().removeTimerRanOutListener(this);
 		// TimerTickedManager.instance().removeTimerTickedListener(this);
-		// AcceleratorManager.instance().removeAccelerateListener(this);
+		AcceleratorManager.instance().removeAccelerateListener(this);
+		ParkManager.instance().removeParkListener(this);
 		// BrakeManager.instance().removeBrakeListener(this);
 		// ParkManager.instance().removeParkListener(this);
 	}
@@ -96,6 +99,18 @@ public class DrivingState extends AutomobileState
 	public void park(ParkEvent event) {
 		// TODO Auto-generated method stub
 		context.changeCurrentState(ParkState.instance());
+	}
+
+	@Override
+	public void powerOff(PowerOffEvent event) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void powerOn(PowerOnEvent event) {
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override

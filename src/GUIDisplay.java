@@ -153,7 +153,7 @@ public class GUIDisplay extends AutomobileDisplay implements ActionListener {
 	@Override
 	public void accelerate() {
 		// TODO Auto-generated method stub
-		frame.drivingStatus.setText("Accelerate");
+		frame.drivingStatus.setText("Accelerator on");
 	}
 
 	/**
@@ -165,7 +165,7 @@ public class GUIDisplay extends AutomobileDisplay implements ActionListener {
 
 	@Override
 	public void brake() {
-		frame.drivingStatus.setText("Braking");
+		frame.drivingStatus.setText("Brake on");
 		// TODO Auto-generated method stub
 
 	}

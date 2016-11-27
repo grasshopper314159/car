@@ -34,7 +34,7 @@ public class AcceleratorState extends AutomobileState
 
 	@Override
 	public void leave() {
-		// AcceleratorManager.instance().removeAccelerateListener(this);
+		AcceleratorManager.instance().removeAccelerateListener(this);
 	}
 
 	/**
@@ -54,7 +54,9 @@ public class AcceleratorState extends AutomobileState
 	 */
 	@Override
 	public void accelerate(AccelerateEvent event) {
+
 		context.changeCurrentState(AcceleratorState.instance());
+
 		display.displayTimeRemaining(Timer.instance().getTimeValue());
 
 	}
@@ -76,7 +78,7 @@ public class AcceleratorState extends AutomobileState
 	@Override
 	public void timerRanOut(TimerRanOutEvent event) {
 		display.displayTimeRemaining(Timer.instance().getTimeValue());
-		// context.changeCurrentState(PowerOnState.instance());
+
 	}
 
 	/**
@@ -84,12 +86,10 @@ public class AcceleratorState extends AutomobileState
 	 */
 	@Override
 	public void run() {
+		Timer.instance().setTimeValue(0);
 		// AcceleratorManager.instance().addAccelerateListener(this);
 		BrakeManager.instance().addBrakeListener(this);
-		// isplay.gearInPark();
-		// display.stopped();
 		display.accelerate();
-		// display.displayTimeRemaining(0);
 		display.displayTimeRemaining(Timer.instance().getTimeValue());
 		TimerRanOutManager.instance().addTimerRanOutListener(this);
 		TimerTickedManager.instance().addTimerTickedListener(this);
