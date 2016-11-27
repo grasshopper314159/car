@@ -22,5 +22,5 @@ package src;
 import java.util.EventListener;
 
 public interface ParkListener extends EventListener {
-	public void powerOff(ParkEvent event);
+	public void park(ParkEvent event);
 }

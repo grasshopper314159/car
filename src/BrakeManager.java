@@ -25,11 +25,6 @@ import javax.swing.event.EventListenerList;
 
 public class BrakeManager {
 
-
-
-
-
-
 	private EventListenerList listenerList = new EventListenerList();
 	private static BrakeManager instance;
 
@@ -54,7 +49,7 @@ public class BrakeManager {
 	public void processEvent(BrakeEvent event) {
 		EventListener[] listeners = listenerList.getListeners(BrakeListener.class);
 		for (int index = 0; index < listeners.length; index++) {
-			((BrakeListener) listeners[index]).powerOff(event);
+			((BrakeListener) listeners[index]).brake(event);
 		}
 	}
 }

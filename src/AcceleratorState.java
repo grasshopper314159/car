@@ -52,7 +52,7 @@ public class AcceleratorState extends AutomobileState implements AccelerateListe
 	 * Process door closed event
 	 */
 	@Override
-	public void Accelerate(AccelerateEvent event) {
+	public void accelerate(AccelerateEvent event) {
 		context.changeCurrentState(AcceleratorState.instance());
 
 	}
