@@ -22,32 +22,32 @@ import java.util.EventListener;
 
 import javax.swing.event.EventListenerList;
 
-public class TimerRanOutManager {
+public class CookRequestManager {
 	private EventListenerList listenerList = new EventListenerList();
-	private static TimerRanOutManager instance;
+	private static CookRequestManager instance;
 
-	private TimerRanOutManager() {
+	private CookRequestManager() {
 	}
 
-	public static TimerRanOutManager instance() {
+	public static CookRequestManager instance() {
 		if (instance == null) {
-			instance = new TimerRanOutManager();
+			instance = new CookRequestManager();
 		}
 		return instance;
 	}
 
-	public void addTimerRanOutListener(TimerRanOutListener listener) {
-		listenerList.add(TimerRanOutListener.class, listener);
+	public void addCookRequestListener(CookRequestListener listener) {
+		listenerList.add(CookRequestListener.class, listener);
 	}
 
-	public void removeTimerRanOutListener(TimerRanOutListener listener) {
-		listenerList.remove(TimerRanOutListener.class, listener);
+	public void removeCookRequestListener(CookRequestListener listener) {
+		listenerList.remove(CookRequestListener.class, listener);
 	}
 
-	public void processEvent(TimerRanOutEvent event) {
-		EventListener[] listeners = listenerList.getListeners(TimerRanOutListener.class);
+	public void processEvent(CookRequestEvent event) {
+		EventListener[] listeners = listenerList.getListeners(CookRequestListener.class);
 		for (int index = 0; index < listeners.length; index++) {
-			((TimerRanOutListener) listeners[index]).timerRanOut(event);
+			((CookRequestListener) listeners[index]).cookRequested(event);
 		}
 	}
 }

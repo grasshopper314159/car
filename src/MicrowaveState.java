@@ -1,4 +1,3 @@
-
 /**
  * 
  * @author Brahma Dathan and Sarnath Ramnath
@@ -18,10 +17,27 @@
  * The authors do not make any claims regarding the correctness of the code in this module
  * and are not responsible for any loss or damage resulting from its use.  
  */
-import java.util.EventObject;
+/**
+ * Super class for all states
+ * 
+ *
+ */
+public abstract class MicrowaveState {
+	protected static MicrowaveContext context;
+	protected static MicrowaveDisplay display;
 
-public class TimerRanOutEvent extends EventObject {
-	public TimerRanOutEvent(Object source) {
-		super(source);
+	/**
+	 * Initialzies the context and display
+	 */
+	protected MicrowaveState() {
+		context = MicrowaveContext.instance();
+		display = context.getDisplay();
 	}
+
+	/**
+	 * Initializes the state
+	 */
+	public abstract void run();
+
+	public abstract void leave();
 }

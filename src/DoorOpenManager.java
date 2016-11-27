@@ -18,51 +18,36 @@
  * The authors do not make any claims regarding the correctness of the code in this module
  * and are not responsible for any loss or damage resulting from its use.  
  */
-import java.util.Observable;
+import java.util.EventListener;
 
-/**
- * Implements a clock as a Runnable. Extends Observable to ease communication
- *
- */
-public class Clock extends Observable implements Runnable {
-	private Thread thread = new Thread(this);
-	private static Clock instance;
+import javax.swing.event.EventListenerList;
 
-	public enum Events {
-		CLOCK_TICKED_EVENT
-	};
+public class DoorOpenManager {
+	private EventListenerList listenerList = new EventListenerList();
+	private static DoorOpenManager instance;
 
-	/**
-	 * Start the thread
-	 */
-	private Clock() {
-		thread.start();
+	private DoorOpenManager() {
 	}
 
-	/**
-	 * To get the instance
-	 * 
-	 * @return returns the clock
-	 */
-	public static Clock instance() {
+	public static DoorOpenManager instance() {
 		if (instance == null) {
-			instance = new Clock();
+			instance = new DoorOpenManager();
 		}
 		return instance;
 	}
 
-	/**
-	 * Infinite loop to generate the clock ticks Notify all users when clock
-	 * ticks
-	 */
-	public void run() {
-		try {
-			while (true) {
-				Thread.sleep(1000);
-				setChanged();
-				notifyObservers(Events.CLOCK_TICKED_EVENT);
-			}
-		} catch (InterruptedException ie) {
+	public void addDoorOpenListener(DoorOpenListener listener) {
+		listenerList.add(DoorOpenListener.class, listener);
+	}
+
+	public void removeDoorOpenListener(DoorOpenListener listener) {
+		listenerList.remove(DoorOpenListener.class, listener);
+	}
+
+	public void processEvent(DoorOpenEvent event) {
+		EventListener[] listeners = listenerList.getListeners(DoorOpenListener.class);
+		for (int index = 0; index < listeners.length; index++) {
+			((DoorOpenListener) listeners[index]).doorOpened(event);
 		}
 	}
 }

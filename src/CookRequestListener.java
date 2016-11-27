@@ -18,10 +18,19 @@
  * The authors do not make any claims regarding the correctness of the code in this module
  * and are not responsible for any loss or damage resulting from its use.  
  */
-import java.util.EventObject;
+import java.util.EventListener;
 
-public class TimerRanOutEvent extends EventObject {
-	public TimerRanOutEvent(Object source) {
-		super(source);
-	}
+/**
+ * Any class may be a CookRequestListener to process cook requests
+ * 
+ * @author Brahma Dathan
+ *
+ */
+public interface CookRequestListener extends EventListener {
+	/**
+	 * Processes cook requests
+	 * 
+	 * @param event
+	 */
+	public void cookRequested(CookRequestEvent event);
 }

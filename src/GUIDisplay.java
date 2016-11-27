@@ -1,4 +1,3 @@
-package src;
 
 /**
  * 
@@ -30,7 +29,7 @@ import javax.swing.JLabel;
  * GUI to implement the MicrowaveDisplay interface A pretty elementary interface
  *
  */
-public class GUIDisplay extends AutomobileDisplay implements ActionListener {
+public class GUIDisplay extends MicrowaveDisplay implements ActionListener {
 	private static SimpleDisplay frame;
 
 	/**
@@ -46,42 +45,30 @@ public class GUIDisplay extends AutomobileDisplay implements ActionListener {
 	 *
 	 */
 	private class SimpleDisplay extends JFrame {
-		private AcceleratorButton acceleratorPresser = new AcceleratorButton("accelerator");
-		private BrakeButton brakePresser = new BrakeButton("brake");
-		private OnButton onButton = new OnButton("On");
-		private OffButton offButton = new OffButton("Off");
-		private DriveButton driveButton = new DriveButton("drive");
-		private ParkButton parkButton = new ParkButton("park");
-		private JLabel powerStatus = new JLabel("Power Off");
+		private DoorCloseButton doorCloser = new DoorCloseButton("close door");
+		private DoorOpenButton doorOpener = new DoorOpenButton("open door");
+		private CookButton cookButton = new CookButton("cook");
+		private JLabel doorStatus = new JLabel("Door Closed");
 		private JLabel timerValue = new JLabel("            ");
-		private JLabel gearStatus = new JLabel("Park");
-		private JLabel drivingStatus = new JLabel("Stopped");
+		private JLabel lightStatus = new JLabel("Light Off");
+		private JLabel cookingStatus = new JLabel("Not cooking");
 
 		/**
 		 * Sets up the interface
 		 */
 		private SimpleDisplay() {
-			super("Automobile");
+			super("Microwave");
 			getContentPane().setLayout(new FlowLayout());
-			getContentPane().add(powerStatus);
-			getContentPane().add(gearStatus);
+			getContentPane().add(doorStatus);
+			getContentPane().add(lightStatus);
 			getContentPane().add(timerValue);
-			getContentPane().add(drivingStatus);
-			getContentPane().add(onButton);
-			getContentPane().add(offButton);
-			getContentPane().add(acceleratorPresser);
-			getContentPane().add(brakePresser);
-			getContentPane().add(driveButton);
-			getContentPane().add(parkButton);
-			onButton.addActionListener(GUIDisplay.this);
-			offButton.addActionListener(GUIDisplay.this);
-			driveButton.addActionListener(GUIDisplay.this);
-			brakePresser.addActionListener(GUIDisplay.this);
-			parkButton.addActionListener(GUIDisplay.this);
-			acceleratorPresser.addActionListener(GUIDisplay.this);
-
-			// acceleratorPresser.addActionListener(GUIDisplay.this);
-			// brakePresser.addActionListener(GUIDisplay.this);
+			getContentPane().add(cookingStatus);
+			getContentPane().add(doorCloser);
+			getContentPane().add(doorOpener);
+			getContentPane().add(cookButton);
+			doorCloser.addActionListener(GUIDisplay.this);
+			doorOpener.addActionListener(GUIDisplay.this);
+			cookButton.addActionListener(GUIDisplay.this);
 			pack();
 			setVisible(true);
 		}
@@ -90,7 +77,6 @@ public class GUIDisplay extends AutomobileDisplay implements ActionListener {
 	/**
 	 * Handles the clicks
 	 */
-	@Override
 	public void actionPerformed(ActionEvent event) {
 		((GUIButton) event.getSource()).inform(this);
 	}
@@ -98,33 +84,29 @@ public class GUIDisplay extends AutomobileDisplay implements ActionListener {
 	/**
 	 * Indicate that the light is on
 	 */
-	@Override
-	public void gearInDrive() {
-		frame.gearStatus.setText("Drive");
+	public void turnLightOn() {
+		frame.lightStatus.setText("Light On");
 	}
 
 	/**
 	 * Indicate that the light is off
 	 */
-	@Override
-	public void gearInPark() {
-		frame.gearStatus.setText("Park");
+	public void turnLightOff() {
+		frame.lightStatus.setText("Light Off");
 	}
 
 	/**
 	 * Indicate that the door is closed
 	 */
-	@Override
-	public void powerOn() {
-		frame.powerStatus.setText("Power On");
+	public void doorClosed() {
+		frame.doorStatus.setText("Door Closed");
 	}
 
 	/**
 	 * Indicate that the door is opened
 	 */
-	@Override
-	public void powerOff() {
-		frame.powerStatus.setText("Power Off");
+	public void doorOpened() {
+		frame.doorStatus.setText("Door Opened");
 	}
 
 	/**
@@ -133,27 +115,22 @@ public class GUIDisplay extends AutomobileDisplay implements ActionListener {
 	 * @param the
 	 *            value remaining
 	 */
-	@Override
 	public void displayTimeRemaining(int value) {
-		frame.timerValue.setText("Speed " + value);
+		frame.timerValue.setText(" " + value);
 	}
 
 	/**
 	 * Indicate that it is cooking
 	 */
+	public void startCooking() {
+		frame.cookingStatus.setText("Cooking");
+	}
 
 	/**
 	 * Indicate that cooking is done
 	 */
-	@Override
-	public void stopped() {
-		frame.drivingStatus.setText("Stopped");
-	}
-
-	@Override
-	public void accelerate() {
-		// TODO Auto-generated method stub
-		frame.drivingStatus.setText("Accelerate");
+	public void notCooking() {
+		frame.cookingStatus.setText("Not cooking");
 	}
 
 	/**
@@ -162,16 +139,7 @@ public class GUIDisplay extends AutomobileDisplay implements ActionListener {
 	 * @param args
 	 *            not used
 	 */
-
-	@Override
-	public void brake() {
-		frame.drivingStatus.setText("Braking");
-		// TODO Auto-generated method stub
-
-	}
-
 	public static void main(String[] args) {
-		AutomobileDisplay display = new GUIDisplay();
+		MicrowaveDisplay display = new GUIDisplay();
 	}
-
 }

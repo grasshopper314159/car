@@ -20,8 +20,8 @@
  */
 import java.util.EventObject;
 
-public class TimerRanOutEvent extends EventObject {
-	public TimerRanOutEvent(Object source) {
+public class DoorCloseEvent extends EventObject {
+	public DoorCloseEvent(Object source) {
 		super(source);
 	}
 }

@@ -1,4 +1,3 @@
-
 /**
  * 
  * @author Brahma Dathan and Sarnath Ramnath
@@ -18,51 +17,52 @@
  * The authors do not make any claims regarding the correctness of the code in this module
  * and are not responsible for any loss or damage resulting from its use.  
  */
-import java.util.Observable;
 
 /**
- * Implements a clock as a Runnable. Extends Observable to ease communication
+ * Represents the door opened state
  *
  */
-public class Clock extends Observable implements Runnable {
-	private Thread thread = new Thread(this);
-	private static Clock instance;
+public class DoorOpenState extends MicrowaveState implements DoorCloseListener {
+	private static DoorOpenState instance;
 
-	public enum Events {
-		CLOCK_TICKED_EVENT
-	};
+	private DoorOpenState() {
+		instance = this;
+	}
 
-	/**
-	 * Start the thread
-	 */
-	private Clock() {
-		thread.start();
+	public void leave() {
+		DoorCloseManager.instance().removeDoorCloseListener(this);
 	}
 
 	/**
-	 * To get the instance
+	 * For the singleton pattern
 	 * 
-	 * @return returns the clock
+	 * @return the object
 	 */
-	public static Clock instance() {
+	public static DoorOpenState instance() {
 		if (instance == null) {
-			instance = new Clock();
+			instance = new DoorOpenState();
 		}
 		return instance;
 	}
 
 	/**
-	 * Infinite loop to generate the clock ticks Notify all users when clock
-	 * ticks
+	 * Process door closed event
+	 */
+	@Override
+	public void doorClosed(DoorCloseEvent event) {
+		context.changeCurrentState(DoorClosedState.instance());
+
+	}
+
+	/**
+	 * Initialize the state
 	 */
 	public void run() {
-		try {
-			while (true) {
-				Thread.sleep(1000);
-				setChanged();
-				notifyObservers(Events.CLOCK_TICKED_EVENT);
-			}
-		} catch (InterruptedException ie) {
-		}
+		DoorCloseManager.instance().addDoorCloseListener(this);
+		display.turnLightOn();
+		display.notCooking();
+		display.doorOpened();
+		display.displayTimeRemaining(0);
 	}
+
 }

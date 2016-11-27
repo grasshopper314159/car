@@ -22,32 +22,32 @@ import java.util.EventListener;
 
 import javax.swing.event.EventListenerList;
 
-public class TimerRanOutManager {
+public class DoorCloseManager {
 	private EventListenerList listenerList = new EventListenerList();
-	private static TimerRanOutManager instance;
+	private static DoorCloseManager instance;
 
-	private TimerRanOutManager() {
+	private DoorCloseManager() {
 	}
 
-	public static TimerRanOutManager instance() {
+	public static DoorCloseManager instance() {
 		if (instance == null) {
-			instance = new TimerRanOutManager();
+			instance = new DoorCloseManager();
 		}
 		return instance;
 	}
 
-	public void addTimerRanOutListener(TimerRanOutListener listener) {
-		listenerList.add(TimerRanOutListener.class, listener);
+	public void addDoorCloseListener(DoorCloseListener listener) {
+		listenerList.add(DoorCloseListener.class, listener);
 	}
 
-	public void removeTimerRanOutListener(TimerRanOutListener listener) {
-		listenerList.remove(TimerRanOutListener.class, listener);
+	public void removeDoorCloseListener(DoorCloseListener listener) {
+		listenerList.remove(DoorCloseListener.class, listener);
 	}
 
-	public void processEvent(TimerRanOutEvent event) {
-		EventListener[] listeners = listenerList.getListeners(TimerRanOutListener.class);
+	public void processEvent(DoorCloseEvent event) {
+		EventListener[] listeners = listenerList.getListeners(DoorCloseListener.class);
 		for (int index = 0; index < listeners.length; index++) {
-			((TimerRanOutListener) listeners[index]).timerRanOut(event);
+			((DoorCloseListener) listeners[index]).doorClosed(event);
 		}
 	}
 }

@@ -20,8 +20,19 @@
  */
 import java.util.EventObject;
 
-public class TimerRanOutEvent extends EventObject {
-	public TimerRanOutEvent(Object source) {
+/**
+ * Represents the cook request
+ *
+ */
+public class CookRequestEvent extends EventObject {
+	/**
+	 * Constructor simply calls the super class's constructor with the supplied
+	 * source
+	 * 
+	 * @param source
+	 *            whatever we get
+	 */
+	public CookRequestEvent(Object source) {
 		super(source);
 	}
 }

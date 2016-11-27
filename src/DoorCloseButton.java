@@ -1,4 +1,3 @@
-
 /**
  * 
  * @author Brahma Dathan and Sarnath Ramnath
@@ -18,10 +17,25 @@
  * The authors do not make any claims regarding the correctness of the code in this module
  * and are not responsible for any loss or damage resulting from its use.  
  */
-import java.util.EventObject;
+/**
+ * Represents the door close button
+ *
+ */
+public class DoorCloseButton extends GUIButton {
+	/**
+	 * Crates the button with the required label
+	 * 
+	 * @param string
+	 *            the label
+	 */
+	public DoorCloseButton(String string) {
+		super(string);
+	}
 
-public class TimerRanOutEvent extends EventObject {
-	public TimerRanOutEvent(Object source) {
-		super(source);
+	/**
+	 * Tell the manager to send it to the right listeners
+	 */
+	public void inform(MicrowaveDisplay source) {
+		DoorCloseManager.instance().processEvent(new DoorCloseEvent(source));
 	}
 }
