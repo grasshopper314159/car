@@ -24,7 +24,7 @@ package src;
  * Represents the door opened state
  *
  */
-public class AcceleratorState extends AutomobileState implements AccelerateListener {
+public class AcceleratorState extends AutomobileState implements AccelerateListener, BrakeListener {
 	private static AcceleratorState instance;
 
 	private AcceleratorState() {
@@ -52,9 +52,15 @@ public class AcceleratorState extends AutomobileState implements AccelerateListe
 	 * Process door closed event
 	 */
 	@Override
-	public void Accelerate(AccelerateEvent event) {
+	public void accelerate(AccelerateEvent event) {
 		context.changeCurrentState(AcceleratorState.instance());
 
+	}
+
+	@Override
+	public void brake(BrakeEvent event) {
+		// TODO Auto-generated method stub
+		context.changeCurrentState(BrakeState.instance());
 	}
 
 	/**
@@ -62,11 +68,12 @@ public class AcceleratorState extends AutomobileState implements AccelerateListe
 	 */
 	@Override
 	public void run() {
-		AcceleratorManager.instance().addAccelerateListener(this);
-		display.gearInPark();
-		display.stopped();
-		display.powerOff();
-		display.displayTimeRemaining(0);
+		// AcceleratorManager.instance().addAccelerateListener(this);
+		BrakeManager.instance().addBrakeListener(this);
+		// isplay.gearInPark();
+		// display.stopped();
+		display.accelerate();
+		// display.displayTimeRemaining(0);
 	}
 
 }

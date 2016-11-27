@@ -51,9 +51,9 @@ public class ParkState extends AutomobileState implements AccelerateListener, Po
 	/**
 	 * Process door closed event
 	 */
-	@Override
-	public void powerOff(PowerOffEvent event) {
-		context.changeCurrentState(PowerOffState.instance());
+
+	public void park(ParkEvent event) {
+		context.changeCurrentState(ParkState.instance());
 
 	}
 
@@ -64,13 +64,19 @@ public class ParkState extends AutomobileState implements AccelerateListener, Po
 	public void run() {
 		PowerOffManager.instance().addPowerOffListener(instance);
 		display.gearInPark();
-		display.stopped();
-		display.powerOff();
-		display.displayTimeRemaining(0);
+		// display.stopped();
+		// display.powerOff();
+		// display.displayTimeRemaining(0);
 	}
 
 	@Override
-	public void Accelerate(AccelerateEvent event) {
+	public void accelerate(AccelerateEvent event) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void powerOff(PowerOffEvent event) {
 		// TODO Auto-generated method stub
 
 	}

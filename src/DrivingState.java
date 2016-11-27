@@ -24,8 +24,8 @@ package src;
  * Represents the cooking state.
  *
  */
-public class DrivingState extends AutomobileState
-		implements DriveRequestListener, TimerRanOutListener, TimerTickedListener, PowerOffListener {
+public class DrivingState extends AutomobileState implements DriveRequestListener, TimerRanOutListener,
+		TimerTickedListener, PowerOffListener, BrakeListener, AccelerateListener {
 	private static DrivingState instance;
 
 	/**
@@ -44,6 +44,8 @@ public class DrivingState extends AutomobileState
 		DriveRequestManager.instance().removeDriveRequestListener(this);
 		TimerRanOutManager.instance().removeTimerRanOutListener(this);
 		TimerTickedManager.instance().removeTimerTickedListener(this);
+		AcceleratorManager.instance().removeAccelerateListener(this);
+		BrakeManager.instance().removeBrakeListener(this);
 	}
 
 	/**
@@ -63,7 +65,7 @@ public class DrivingState extends AutomobileState
 	 */
 	@Override
 	public void driveRequested(DriveRequestEvent event) {
-		Timer.instance().addTimeValue(10);
+		// Timer.instance().addTimeValue(10);
 		display.displayTimeRemaining(Timer.instance().getTimeValue());
 	}
 
@@ -98,9 +100,23 @@ public class DrivingState extends AutomobileState
 	 * 
 	 */
 	@Override
+	public void brake(BrakeEvent event) {
+		// TODO Auto-generated method stub
+		context.changeCurrentState(BrakeState.instance());
+	}
+
+	@Override
+	public void accelerate(AccelerateEvent event) {
+		// TODO Auto-generated method stub
+		context.changeCurrentState(AcceleratorState.instance());
+	}
+
+	@Override
 	public void run() {
-		PowerOffManager.instance().addPowerOffListener(this);
+		// PowerOffManager.instance().addPowerOffListener(this);
 		// DriveRequestManager.instance().addDriveRequestListener(this);
+		AcceleratorManager.instance().addAccelerateListener(this);
+		BrakeManager.instance().addBrakeListener(this);
 		TimerRanOutManager.instance().addTimerRanOutListener(this);
 		TimerTickedManager.instance().addTimerTickedListener(this);
 		display.gearInDrive();
@@ -108,4 +124,5 @@ public class DrivingState extends AutomobileState
 		display.startDriving();
 		display.displayTimeRemaining(Timer.instance().getTimeValue());
 	}
+
 }

@@ -1,3 +1,4 @@
+package src;
 /**
  *
  * @author Brahma Dathan and Sarnath Ramnath
@@ -23,18 +24,19 @@
  * Represents the door opened state
  *
  */
-public class BrakeState extends AutomobileState implements AccelerateListener, ParkListener {
+public class BrakeState extends AutomobileState implements AccelerateListener, ParkListener, BrakeListener {
 	private static BrakeState instance;
 
 	private BrakeState() {
 		instance = this;
 	}
 
+	@Override
 	public void leave() {
-		AcceleratorManager.instance().removeAccelerateListener(instance);
+		// AcceleratorManager.instance().removeAccelerateListener(instance);
 		// change parameter to AccelerateListener in ln 51 from
 		// acceleratormanager.java
-		ParkManager.instance().removeAccelerateListener(instance);
+		// ParkManager.instance().removeParkListener(instance);
 	}
 
 	/**
@@ -53,9 +55,15 @@ public class BrakeState extends AutomobileState implements AccelerateListener, P
 	 * handle accelerate event
 	 * 
 	 */
+
+	@Override
+	public void brake(BrakeEvent event) {
+		context.changeCurrentState(BrakeState.instance());
+	}
+
 	@Override
 	public void accelerate(AccelerateEvent event) {
-		context.changeCurrentState(AccelerateEvent.instance());
+		context.changeCurrentState(AcceleratorState.instance());
 	}
 
 	/**
@@ -64,18 +72,19 @@ public class BrakeState extends AutomobileState implements AccelerateListener, P
 	 */
 	@Override
 	public void park(ParkEvent event) {
-		context.changeCurrentState(ParkEvent.instance());
+		context.changeCurrentState(ParkState.instance());
 	}
 
 	/**
 	 * Initialize the state
 	 */
+	@Override
 	public void run() {
-		BrakeManager.instance().addBrakeListener(this);
+		// BrakeManager.instance().addBrakeListener(this);
 		// display.turnLightOn();
 		// display.notCooking();
-		display.Brake();
-		display.displayTimeRemaining(0);
+		display.brake();
+		// display.displayTimeRemaining(0);
 	}
 
 }
