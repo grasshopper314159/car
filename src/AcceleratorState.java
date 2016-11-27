@@ -56,10 +56,6 @@ public class AcceleratorState extends AutomobileState
 	 */
 	@Override
 	public void accelerate(AccelerateEvent event) {
-<<<<<<< HEAD
-=======
-
->>>>>>> refs/remotes/origin/master
 		context.changeCurrentState(AcceleratorState.instance());
 
 		display.displayTimeRemaining(Timer.instance().getTimeValue());
