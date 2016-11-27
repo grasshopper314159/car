@@ -24,7 +24,8 @@ package src;
  * Represents the door opened state
  *
  */
-public class AcceleratorState extends AutomobileState implements AccelerateListener {
+public class AcceleratorState extends AutomobileState
+		implements AccelerateListener, BrakeListener, TimerRanOutListener, TimerTickedListener {
 	private static AcceleratorState instance;
 
 	private AcceleratorState() {
@@ -34,6 +35,8 @@ public class AcceleratorState extends AutomobileState implements AccelerateListe
 	@Override
 	public void leave() {
 		AcceleratorManager.instance().removeAccelerateListener(this);
+		TimerRanOutManager.instance().removeTimerRanOutListener(this);
+		TimerTickedManager.instance().removeTimerTickedListener(this);
 	}
 
 	/**
@@ -53,7 +56,33 @@ public class AcceleratorState extends AutomobileState implements AccelerateListe
 	 */
 	@Override
 	public void accelerate(AccelerateEvent event) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/master
 		context.changeCurrentState(AcceleratorState.instance());
+
+		display.displayTimeRemaining(Timer.instance().getTimeValue());
+
+	}
+
+	@Override
+	public void brake(BrakeEvent event) {
+		// TODO Auto-generated method stub
+		context.changeCurrentState(BrakeState.instance());
+	}
+
+	@Override
+	public void timerTicked(TimerTickedEvent event) {
+		display.displayTimeRemaining(Timer.instance().getTimeValue());
+	}
+
+	/**
+	 * Process clock ticks Generates the timer runs out event
+	 */
+	@Override
+	public void timerRanOut(TimerRanOutEvent event) {
+		display.displayTimeRemaining(Timer.instance().getTimeValue());
 
 	}
 
@@ -62,11 +91,13 @@ public class AcceleratorState extends AutomobileState implements AccelerateListe
 	 */
 	@Override
 	public void run() {
-		AcceleratorManager.instance().addAccelerateListener(this);
-		display.gearInPark();
-		display.stopped();
-		display.powerOff();
-		display.displayTimeRemaining(0);
+
+		// AcceleratorManager.instance().addAccelerateListener(this);
+		BrakeManager.instance().addBrakeListener(this);
+		display.accelerate();
+		display.displayTimeRemaining(Timer.instance().getTimeValue());
+		TimerRanOutManager.instance().addTimerRanOutListener(this);
+		TimerTickedManager.instance().addTimerTickedListener(this);
 	}
 
 }

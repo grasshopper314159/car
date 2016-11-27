@@ -37,8 +37,9 @@ public class AcceleratorButton extends GUIButton {
 	/**
 	 * Tell the manager to send it to the right listeners
 	 */
+	@Override
 	public void inform(AutomobileDisplay source) {
-		// AcceleratorManager.instance().processEvent(new PowerOnEvent(source));
+		AcceleratorManager.instance().processEvent(new AccelerateEvent(source));
 
 	}
 }

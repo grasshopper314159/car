@@ -38,7 +38,8 @@ public class BrakeButton extends GUIButton {
 	 * Create the DoorOpenEvent and tell the manager that the button has been
 	 * clicked.
 	 */
+	@Override
 	public void inform(AutomobileDisplay source) {
-		PowerOffManager.instance().processEvent(new PowerOffEvent(source));
+		BrakeManager.instance().processEvent(new BrakeEvent(source));
 	}
 }

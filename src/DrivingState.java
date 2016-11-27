@@ -24,8 +24,8 @@ package src;
  * Represents the cooking state.
  *
  */
-public class DrivingState extends AutomobileState
-		implements DriveRequestListener, TimerRanOutListener, TimerTickedListener, PowerOffListener {
+public class DrivingState extends AutomobileState implements DriveRequestListener, BrakeListener, AccelerateListener,
+		ParkListener, PowerOnListener, PowerOffListener {
 	private static DrivingState instance;
 
 	/**
@@ -39,10 +39,17 @@ public class DrivingState extends AutomobileState
 	 * Removes as a listener from all managers
 	 * 
 	 */
+	@Override
 	public void leave() {
 		DriveRequestManager.instance().removeDriveRequestListener(this);
-		TimerRanOutManager.instance().removeTimerRanOutListener(this);
-		TimerTickedManager.instance().removeTimerTickedListener(this);
+		PowerOnManager.instance().removePowerOnListener(this);
+		PowerOffManager.instance().removePowerOffListener(this);
+		// TimerRanOutManager.instance().removeTimerRanOutListener(this);
+		// TimerTickedManager.instance().removeTimerTickedListener(this);
+		AcceleratorManager.instance().removeAccelerateListener(this);
+		ParkManager.instance().removeParkListener(this);
+		// BrakeManager.instance().removeBrakeListener(this);
+		// ParkManager.instance().removeParkListener(this);
 	}
 
 	/**
@@ -60,46 +67,64 @@ public class DrivingState extends AutomobileState
 	/**
 	 * Process Cook request
 	 */
+	@Override
 	public void driveRequested(DriveRequestEvent event) {
-		Timer.instance().addTimeValue(10);
-		display.displayTimeRemaining(Timer.instance().getTimeValue());
-	}
+		// Timer.instance().addTimeValue(10);
 
-	/**
-	 * Process door open request
-	 */
-	public void powerOff(PowerOffEvent event) {
-		context.changeCurrentState(PowerOffState.instance());
 	}
 
 	/**
 	 * Process clock tick Generates the timer runs out event
 	 */
-	public void timerTicked(TimerTickedEvent event) {
-		display.displayTimeRemaining(Timer.instance().getTimeValue());
-	}
-
-	/**
-	 * Process clock ticks Generates the timer runs out event
-	 */
-	public void timerRanOut(TimerRanOutEvent event) {
-		display.displayTimeRemaining(Timer.instance().getTimeValue());
-		context.changeCurrentState(PowerOnState.instance());
-	}
 
 	/**
 	 * Initializes the state Adds itself as a listener to managers Updates the
 	 * dosplays
 	 * 
 	 */
-	public void run() {
-		PowerOffManager.instance().addPowerOffListener(this);
-		DriveRequestManager.instance().addDriveRequestListener(this);
-		TimerRanOutManager.instance().addTimerRanOutListener(this);
-		TimerTickedManager.instance().addTimerTickedListener(this);
-		display.gearInDrive();
-		Timer.instance().setTimeValue(10);
-		display.startDriving();
-		display.displayTimeRemaining(Timer.instance().getTimeValue());
+	@Override
+	public void brake(BrakeEvent event) {
+		// TODO Auto-generated method stub
+		context.changeCurrentState(BrakeState.instance());
 	}
+
+	@Override
+	public void accelerate(AccelerateEvent event) {
+		// TODO Auto-generated method stub
+		context.changeCurrentState(AcceleratorState.instance());
+
+	}
+
+	@Override
+	public void park(ParkEvent event) {
+		// TODO Auto-generated method stub
+		context.changeCurrentState(ParkState.instance());
+	}
+
+	@Override
+	public void powerOff(PowerOffEvent event) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void powerOn(PowerOnEvent event) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void run() {
+		// PowerOffManager.instance().addPowerOffListener(this);
+		// DriveRequestManager.instance().addDriveRequestListener(this);
+		Timer.instance().setTimeValue(0);
+		AcceleratorManager.instance().addAccelerateListener(this);
+		BrakeManager.instance().addBrakeListener(this);
+		ParkManager.instance().addParkListener(this);
+		display.gearInDrive();
+		// Timer.instance().setTimeValue(10);
+		// display.startDriving();
+
+	}
+
 }

@@ -62,20 +62,25 @@ public class GUIDisplay extends AutomobileDisplay implements ActionListener {
 		 */
 		private SimpleDisplay() {
 			super("Automobile");
+
 			getContentPane().setLayout(new FlowLayout());
-			getContentPane().add(powerStatus);
-			getContentPane().add(gearStatus);
-			getContentPane().add(timerValue);
-			getContentPane().add(drivingStatus);
 			getContentPane().add(onButton);
 			getContentPane().add(offButton);
-			getContentPane().add(acceleratorPresser);
-			getContentPane().add(brakePresser);
+			getContentPane().add(powerStatus);
 			getContentPane().add(driveButton);
 			getContentPane().add(parkButton);
+			getContentPane().add(gearStatus);
+			getContentPane().add(acceleratorPresser);
+			getContentPane().add(brakePresser);
+			getContentPane().add(drivingStatus);
+			getContentPane().add(timerValue);
 			onButton.addActionListener(GUIDisplay.this);
 			offButton.addActionListener(GUIDisplay.this);
 			driveButton.addActionListener(GUIDisplay.this);
+			brakePresser.addActionListener(GUIDisplay.this);
+			parkButton.addActionListener(GUIDisplay.this);
+			acceleratorPresser.addActionListener(GUIDisplay.this);
+
 			// acceleratorPresser.addActionListener(GUIDisplay.this);
 			// brakePresser.addActionListener(GUIDisplay.this);
 			pack();
@@ -131,16 +136,12 @@ public class GUIDisplay extends AutomobileDisplay implements ActionListener {
 	 */
 	@Override
 	public void displayTimeRemaining(int value) {
-		frame.timerValue.setText(" " + value);
+		frame.timerValue.setText("Speed " + value);
 	}
 
 	/**
 	 * Indicate that it is cooking
 	 */
-	@Override
-	public void startDriving() {
-		frame.drivingStatus.setText("Cooking");
-	}
 
 	/**
 	 * Indicate that cooking is done
@@ -150,13 +151,28 @@ public class GUIDisplay extends AutomobileDisplay implements ActionListener {
 		frame.drivingStatus.setText("Stopped");
 	}
 
+	@Override
+	public void accelerate() {
+		// TODO Auto-generated method stub
+		frame.drivingStatus.setText("Accelerator on");
+	}
+
 	/**
 	 * The main method. Creates the interface
 	 * 
 	 * @param args
 	 *            not used
 	 */
+
+	@Override
+	public void brake() {
+		frame.drivingStatus.setText("Brake on");
+		// TODO Auto-generated method stub
+
+	}
+
 	public static void main(String[] args) {
 		AutomobileDisplay display = new GUIDisplay();
 	}
+
 }
